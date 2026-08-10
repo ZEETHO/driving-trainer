@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WHY ANT CANT DRIVE — Connecticut Learner's Trainer</title>
+<style>
+:root{
+  --ink:#2b1533; --ink2:#6d5a78; --line:#f0e2f2; --bg:#fdf6fb; --card:#fff;
+  --brand:#7e22ce; --brand2:#4c1d95; --pink:#db2777; --pink2:#fdf2f8;
+  --ok:#7c3aed; --okbg:#f5f1ff; --warn:#b45309; --bad:#b91c1c; --badbg:#fef2f2;
+  --amber:#db2777; --shadow:0 1px 2px rgba(76,29,149,.07),0 8px 24px rgba(219,39,119,.08);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+header{color:#fff;padding:22px 20px 18px;
+  background:linear-gradient(135deg,#4c1d95 0%,#7e22ce 38%,#db2777 74%,#e11d48 100%)}
+.wrap{max-width:980px;margin:0 auto}
+h1{margin:0;font-size:22px;letter-spacing:-.2px}
+.sub{opacity:.85;font-size:13.5px;margin-top:4px}
+.hdrow{display:flex;align-items:center;gap:18px;justify-content:space-between;flex-wrap:wrap}
+.ring{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.ring svg{display:block}
+nav{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;
+  box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.tabs{display:flex;gap:2px;overflow-x:auto;max-width:980px;margin:0 auto;padding:0 12px;scrollbar-width:thin}
+.tab{border:0;background:none;padding:13px 13px 11px;font:inherit;font-size:13.5px;font-weight:600;
+  color:var(--ink2);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--brand)}
+.tab.on{color:var(--brand);border-bottom-color:var(--brand)}
+.tab .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-left:6px;vertical-align:middle;opacity:0}
+.tab.done .dot{opacity:1}
+main{max-width:980px;margin:0 auto;padding:22px 16px 70px}
+section{display:none;animation:fade .25s ease}
+section.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h2{font-size:19px;margin:0 0 4px}
+.lede{color:var(--ink2);margin:0 0 18px;font-size:14px;max-width:66ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{margin:0 0 8px;font-size:15.5px}
+.muted{color:var(--ink2);font-size:13.5px}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;background:#eef2f7;color:var(--brand2)}
+.pill.warn{background:#fdf3dc;color:#8a6200}
+.pill.bad{background:#fdecec;color:var(--bad)}
+.pill.ok{background:#e7f5ed;color:var(--ok)}
+button.act{font:inherit;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink);
+  padding:8px 14px;border-radius:8px;cursor:pointer}
+button.act:hover{border-color:var(--brand);color:var(--brand)}
+button.act.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+button.act.primary:hover{background:var(--brand2)}
+
+/* cockpit */
+.cockpit-wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+@media(max-width:820px){.cockpit-wrap{grid-template-columns:1fr}}
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:var(--shadow)}
+.diagram svg{width:100%;height:auto;display:block}
+.hs{cursor:pointer}
+.hs circle.bub{fill:#fff;stroke:var(--brand);stroke-width:2.5;transition:.15s}
+.hs text{font-size:17px;font-weight:700;fill:var(--brand);pointer-events:none}
+.hs:hover circle.bub{fill:var(--brand)}
+.hs:hover text{fill:#fff}
+.hs.seen circle.bub{fill:#e7f5ed;stroke:var(--ok)}
+.hs.seen text{fill:var(--ok)}
+.hs.active circle.bub{fill:var(--brand);stroke:var(--brand)}
+.hs.active text{fill:#fff}
+#ctrlInfo{min-height:220px}
+#ctrlInfo .why{background:#f2f7fc;border-left:3px solid var(--brand);padding:9px 12px;border-radius:0 8px 8px 0;
+  font-size:13.5px;margin-top:10px}
+#ctrlInfo ul{margin:8px 0 0;padding-left:18px}
+#ctrlInfo li{margin-bottom:5px;font-size:14px}
+
+/* checklist */
+.chk{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-child{border-bottom:0}
+.box{flex:none;width:22px;height:22px;border:2px solid #c4cbd6;border-radius:6px;margin-top:1px;
+  display:grid;place-items:center;font-size:14px;color:#fff;transition:.15s}
+.chk.on .box{background:var(--ok);border-color:var(--ok)}
+.chk.on .ttl{text-decoration:line-through;color:var(--ink2)}
+.ttl{font-weight:600;font-size:14.5px}
+.chk .why{font-size:13px;color:var(--ink2);margin-top:2px}
+
+/* quiz */
+.q{font-weight:600;font-size:15.5px;margin:0 0 12px}
+.choices{display:grid;gap:8px}
+.choice{text-align:left;font:inherit;background:#fff;border:1.5px solid var(--line);border-radius:9px;
+  padding:11px 13px;cursor:pointer;transition:.12s;display:flex;gap:10px;align-items:flex-start}
+.choice:hover:not(:disabled){border-color:var(--brand);background:#f7fafd}
+.choice:disabled{cursor:default}
+.choice .k{flex:none;font-weight:700;color:var(--ink2);width:16px}
+.choice.correct{border-color:var(--ok);background:#eaf7f0}
+.choice.correct .k{color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:#fdeeee}
+.choice.wrong .k{color:var(--bad)}
+.fb{margin-top:12px;padding:11px 13px;border-radius:9px;font-size:14px;display:none}
+.fb.show{display:block}
+.fb.good{background:#eaf7f0;border-left:3px solid var(--ok)}
+.fb.bad{background:#fdeeee;border-left:3px solid var(--bad)}
+.qbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;
+  font-size:13px;color:var(--ink2);font-weight:600}
+.signbox{display:grid;place-items:center;padding:8px 0 14px}
+.signbox svg{max-width:150px;height:auto}
+.scenebox{display:grid;place-items:center;padding:4px 0 12px}
+.scenebox svg{max-width:300px;height:auto}
+
+/* maneuvers */
+details.man{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden}
+details.man>summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:15px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:10px}
+details.man>summary::-webkit-details-marker{display:none}
+details.man>summary::after{content:"+";font-size:20px;color:var(--brand);font-weight:400}
+details.man[open]>summary::after{content:"–"}
+details.man[open]>summary{border-bottom:1px solid var(--line)}
+.manbody{padding:14px 18px 18px}
+ol.steps{margin:0;padding-left:20px}
+ol.steps li{margin-bottom:9px;font-size:14px}
+ol.steps li b{color:var(--brand2)}
+.tip{background:#fdf9ec;border-left:3px solid var(--amber);padding:9px 12px;border-radius:0 8px 8px 0;
+  font-size:13.5px;margin-top:12px}
+.tip.red{background:#fdeeee;border-left-color:var(--bad)}
+
+/* connecticut */
+.step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step .num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:13px}
+.step .st{font-weight:600;font-size:14.5px}
+.step .sd{font-size:13.5px;color:var(--ink2);margin-top:2px}
+.phase{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.phase .ph{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.4px;color:var(--brand2);margin-bottom:6px}
+.phase ul{margin:0;padding-left:18px}
+.phase li{font-size:13.5px;margin-bottom:4px}
+.lawcard{border-left:3px solid var(--brand);background:#f7fafd;border-radius:0 9px 9px 0;
+  padding:10px 13px;margin-bottom:9px}
+.lawcard b{display:block;font-size:14px;margin-bottom:3px}
+.lawcard span{font-size:13.5px;color:var(--ink2)}
+.lawcard.hot{border-left-color:var(--bad);background:#fdf4f4}
+
+/* log */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f2f5f9;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink2)}
+td.n{width:34px;color:var(--ink2);font-weight:700}
+.blank{height:30px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+footer{max-width:980px;margin:0 auto;padding:0 16px 40px;color:var(--ink2);font-size:12.5px}
+/* ---------- palette overrides ---------- */
+.pill{background:#f6ecfb;color:var(--brand2)}
+.pill.warn{background:#fff4e6;color:var(--warn)}
+.pill.bad{background:var(--badbg);color:var(--bad)}
+.pill.ok{background:var(--okbg);color:var(--ok)}
+.tab.on{color:var(--pink);border-bottom-color:var(--pink)}
+.tab:hover{color:var(--pink)}
+.tab .dot{background:var(--pink)}
+.hs.seen circle.bub{fill:#fce7f3;stroke:var(--pink)}
+.hs.seen text{fill:var(--pink)}
+#ctrlInfo .why{background:#faf3fe;border-left-color:var(--pink)}
+.box{border-color:#dcc7e4}
+.chk.on .box{background:linear-gradient(135deg,var(--brand),var(--pink));border-color:var(--pink)}
+.choice:hover:not(:disabled){border-color:var(--pink);background:var(--pink2)}
+.choice.correct{border-color:var(--ok);background:var(--okbg)}
+.choice.correct .k{color:var(--ok)}
+.choice.wrong{border-color:var(--bad);background:var(--badbg)}
+.fb.good{background:var(--okbg);border-left-color:var(--ok)}
+.fb.bad{background:var(--badbg);border-left-color:var(--bad)}
+.tip{background:var(--pink2);border-left-color:var(--pink)}
+.tip.red{background:var(--badbg);border-left-color:var(--bad)}
+th{background:#faf0f8;color:var(--brand2)}
+.lawcard{background:#faf3fe;border-left-color:var(--brand)}
+.lawcard.hot{background:var(--badbg);border-left-color:var(--bad)}
+.step .num{background:linear-gradient(135deg,var(--brand),var(--pink))}
+.phase{border-color:#f0dcee}
+details.man>summary::after{color:var(--pink)}
+button.act.primary{background:linear-gradient(135deg,var(--brand),var(--pink));border-color:transparent}
+button.act.primary:hover{background:linear-gradient(135deg,var(--brand2),var(--brand))}
+button.act:hover{border-color:var(--pink);color:var(--pink)}
+a{color:var(--brand)}
+
+/* ---------- FAQ ---------- */
+.searchbar{position:relative;margin-bottom:14px}
+.searchbar input{width:100%;font:inherit;font-size:15px;padding:12px 14px 12px 40px;
+  border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.searchbar input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(219,39,119,.12)}
+.searchbar svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.45}
+.faqcat{font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--pink);margin:20px 0 8px}
+.faqcat:first-child{margin-top:0}
+details.faq{background:var(--card);border:1px solid var(--line);border-radius:11px;margin-bottom:8px;
+  box-shadow:var(--shadow);overflow:hidden}
+details.faq>summary{cursor:pointer;padding:13px 16px;font-weight:600;font-size:14.5px;list-style:none;
+  display:flex;gap:10px;align-items:flex-start;min-height:48px}
+details.faq>summary::-webkit-details-marker{display:none}
+details.faq>summary::before{content:"?";flex:none;width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff;font-size:12px;font-weight:800;
+  display:grid;place-items:center;margin-top:1px}
+details.faq[open]>summary{border-bottom:1px solid var(--line);color:var(--brand2)}
+.faqbody{padding:13px 16px 16px;font-size:14px}
+.faqbody p{margin:0 0 9px}
+.fix{background:linear-gradient(135deg,#faf3fe,var(--pink2));border-left:3px solid var(--pink);
+  border-radius:0 9px 9px 0;padding:10px 13px;font-size:13.5px;margin-top:10px}
+.fix b{color:var(--brand2)}
+.nores{padding:22px;text-align:center;color:var(--ink2);font-size:14px}
+
+/* ---------- mobile ---------- */
+.tabs{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.tab{scroll-snap-align:start;min-height:46px}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+button,summary,.chk,.hs{touch-action:manipulation}
+@media(max-width:640px){
+  header{padding:15px 14px 13px}
+  h1{font-size:19px;line-height:1.2}
+  .sub{font-size:12.5px}
+  .hdrow{gap:12px}
+  .ring{font-size:11.5px;gap:8px}
+  .ring svg{width:46px;height:46px}
+  main{padding:15px 12px 56px}
+  h2{font-size:17px}
+  .lede{font-size:13.5px;margin-bottom:14px}
+  .card{padding:13px 14px;border-radius:11px}
+  .card h3{font-size:15px}
+  .tab{padding:12px 11px 10px;font-size:13px}
+  .choice{padding:13px;min-height:50px;font-size:14px}
+  .chk{padding:13px 0;gap:11px}
+  .box{width:26px;height:26px}
+  .ttl{font-size:14px}
+  details.man>summary,details.faq>summary{padding:13px 14px;font-size:14px}
+  .manbody,.faqbody{padding:12px 14px 16px}
+  ol.steps{padding-left:18px}
+  ol.steps li{font-size:13.5px}
+  th,td{padding:7px 6px;font-size:12px}
+  .step{gap:11px;padding:11px 0}
+  .step .num{width:26px;height:26px;font-size:12px}
+  .phase{padding:11px 12px}
+  .scenebox svg{max-width:250px}
+  .signbox svg{max-width:130px}
+  footer{padding:0 12px 34px;font-size:12px}
+}
+@media print{nav,header .ring,.noprint,.searchbar{display:none!important}
+  section{display:block!important}details.faq,details.man{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hdrow">
+    <div>
+      <h1>WHY ANT CANT DRIVE</h1>
+      <div class="sub">…yet. Everything a new Connecticut driver has to know cold — before the key ever turns.</div>
+    </div>
+    <div class="ring">
+      <svg width="56" height="56" viewBox="0 0 56 56">
+        <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="6"/>
+        <circle id="ringArc" cx="28" cy="28" r="23" fill="none" stroke="#7ee2a8" stroke-width="6"
+          stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="144.5"
+          transform="rotate(-90 28 28)"/>
+        <text id="ringTxt" x="28" y="32" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">0%</text>
+      </svg>
+      <div>Overall<br>progress</div>
+    </div>
+  </div>
+</header>
+
+<nav><div class="tabs" id="tabs"></div></nav>
+
+<main>
+  <!-- 1. CONNECTICUT -->
+  <section id="s-ct" class="on">
+    <h2>1 · Connecticut rules</h2>
+    <p class="lede">Connecticut has one of the stricter graduated licensing programs in the country, and the rules are unusual enough that guessing will get him suspended. This is the legal frame everything else sits inside.</p>
+
+    <div class="card">
+      <h3>The road to a license at 16 or 17</h3>
+      <div id="ctPath"></div>
+      <div class="tip"><b>The one that catches families out:</b> if no parent or legal guardian completes the two-hour parent training class, he cannot be licensed in Connecticut until he turns 18 — no matter how well he drives. Book it early.</div>
+    </div>
+
+    <div class="card">
+      <h3>What he may and may not do</h3>
+      <p class="muted" style="margin-top:-2px">Restrictions tighten around the permit, then unwind in stages over the first year of licensure.</p>
+      <div id="ctRestrict"></div>
+    </div>
+
+    <div class="card">
+      <h3>Connecticut road laws worth knowing by heart</h3>
+      <div id="ctLaws"></div>
+    </div>
+
+    <div class="card">
+      <div class="qbar"><span id="ctBar"></span><span id="ctScore"></span></div>
+      <div id="ctQ"></div>
+    </div>
+  </section>
+
+  <!-- 2. FAQ -->
+  <section id="s-faq">
+    <h2>2 · Questions everybody asks</h2>
+    <p class="lede">The things families actually call the DMV about — each one paired with how it gets resolved. Search or scroll.</p>
+    <div class="searchbar">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3" stroke-linecap="round"/></svg>
+      <input id="faqSearch" type="search" placeholder="Search: prom, insurance, road test, phone, ticket…"
+        autocomplete="off" aria-label="Search questions">
+    </div>
+    <div id="faqList"></div>
+  </section>
+
+  <!-- 3. COCKPIT -->
+  <section id="s-cockpit">
+    <h2>3 · Know the cockpit</h2>
+    <p class="lede">Before moving an inch, he should be able to find every one of these without looking down. Tap each numbered point.</p>
+    <div class="cockpit-wrap">
+      <div class="diagram" id="diagram"></div>
+      <div class="card" id="ctrlInfo">
+        <span class="pill">Tap a number</span>
+        <h3 style="margin-top:10px">The controls that matter</h3>
+        <p class="muted">Fourteen points. A driver who has to hunt for the wiper stalk in the rain is a driver whose eyes just left the road.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PRE-DRIVE -->
+  <section id="s-predrive">
+    <h2>4 · The pre-drive ritual</h2>
+    <p class="lede">Same order, every single time, until it's muscle memory. Two minutes now prevents the panic of adjusting a mirror at 45 mph.</p>
+    <div class="card"><h3>Outside the car</h3><div id="chkOut"></div></div>
+    <div class="card"><h3>In the seat — before the engine</h3><div id="chkIn"></div></div>
+    <div class="card"><h3>Engine on — before moving</h3><div id="chkGo"></div></div>
+  </section>
+
+  <!-- 3. SIGNS -->
+  <section id="s-signs">
+    <h2>5 · Sign school</h2>
+    <p class="lede">Shape and color tell you what a sign means before you're close enough to read it. That's the whole point of the system — learn it and you get an extra second of reaction time on every sign.</p>
+    <div class="card" id="signRef"></div>
+    <div class="card">
+      <div class="qbar"><span id="signBar"></span><span id="signScore"></span></div>
+      <div id="signQ"></div>
+    </div>
+  </section>
+
+  <!-- 4. RIGHT OF WAY -->
+  <section id="s-row">
+    <h2>6 · Who goes first</h2>
+    <p class="lede">Right-of-way is never something you <em>take</em> — it's something the other driver gives you. These twelve situations cover the overwhelming majority of intersection crashes.</p>
+    <div class="card">
+      <div class="qbar"><span id="rowBar"></span><span id="rowScore"></span></div>
+      <div id="rowQ"></div>
+    </div>
+  </section>
+
+  <!-- 5. MANEUVERS -->
+  <section id="s-man">
+    <h2>7 · Maneuvers, step by step</h2>
+    <p class="lede">Read these <em>before</em> the lot session, then have him narrate the steps out loud while doing them. Saying it forces sequencing.</p>
+    <div id="manList"></div>
+  </section>
+
+  <!-- 6. HAZARDS -->
+  <section id="s-haz">
+    <h2>8 · When it goes wrong</h2>
+    <p class="lede">Every one of these has a counter-intuitive correct answer. Panic instinct is wrong in almost all of them, which is exactly why they get rehearsed in a chair instead of on a highway.</p>
+    <div class="card">
+      <div class="qbar"><span id="hazBar"></span><span id="hazScore"></span></div>
+      <div id="hazQ"></div>
+    </div>
+  </section>
+
+  <!-- 7. LOG -->
+  <section id="s-log">
+    <h2>9 · The 20-session ladder</h2>
+    <p class="lede">Difficulty ramps deliberately. Skipping ahead is how new drivers build confidence they haven't earned. Check each off once it feels boring — boring is the goal.</p>
+    <div class="card"><div id="ladder"></div></div>
+    <div class="card noprint">
+      <h3>Printable practice log</h3>
+      <p class="muted">Connecticut requires at least <b>40 hours of behind-the-wheel, on-the-road training</b> while he holds the permit, alongside 30 classroom hours. Print this and keep it in the glovebox.</p>
+      <button class="act primary" onclick="window.print()">Print log</button>
+    </div>
+    <div class="card">
+      <div class="tablewrap">
+        <table style="min-width:520px">
+          <thead><tr><th style="width:22%">Date</th><th style="width:14%">Time</th><th style="width:14%">Miles</th><th>Conditions &amp; what we worked on</th><th style="width:16%">Supervisor</th></tr></thead>
+          <tbody id="logRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>WHY ANT CANT DRIVE</b> — built as a study aid for a Connecticut learner. It teaches judgment and vocabulary; it does not
+  replace the required 30 classroom hours, 40 behind-the-wheel hours, a DMV-licensed instructor, or the official
+  <a href="https://portal.ct.gov/dmv/licenses-permits-ids/ct-drivers-manuals">Connecticut Driver's Manual</a>.
+  Connecticut rules here were checked against
+  <a href="https://portal.ct.gov/dmv/licenses-permits-ids/teen-drivers-license/driver-restrictions-teens">CT DMV teen driving restrictions</a> and
+  <a href="https://portal.ct.gov/dmv/licenses-permits-ids/teen-drivers-license">CT DMV teen licensing</a> in August 2026.
+  Laws change — confirm anything consequential with the DMV before relying on it.
+</footer>
+
+<script>
+/* ============================ STATE ============================ */
+const store = {
+  read(){ try{ return JSON.parse(localStorage.getItem('gs-progress')||'{}'); }catch(e){ return {}; } },
+  write(v){ try{ localStorage.setItem('gs-progress', JSON.stringify(v)); }catch(e){} }
+};
+let P = Object.assign({seen:[],chk:[],signs:0,row:0,haz:0,ct:0,faq:[],ladder:[]}, store.read());
+const save = ()=>{ store.write(P); paintProgress(); };
+
+/* ============================ TABS ============================ */
+const TABS = [
+  ['ct','CT rules'],['faq','FAQ'],['cockpit','Cockpit'],['predrive','Pre-drive'],['signs','Signs'],
+  ['row','Right of way'],['man','Maneuvers'],['haz','Hazards'],['log','Practice log']
+];
+const tabsEl = document.getElementById('tabs');
+TABS.forEach(([id,label],i)=>{
+  const b=document.createElement('button');
+  b.className='tab'+(i===0?' on':''); b.dataset.id=id;
+  b.innerHTML=label+'<span class="dot"></span>';
+  b.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
+    b.classList.add('on'); document.getElementById('s-'+id).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  tabsEl.appendChild(b);
+});
+
+/* ============================ 1. CONNECTICUT ============================ */
+const CT_PATH = [
+  ['Learner\'s permit at 16','Apply at the CT DMV with a parent or legal guardian\'s consent. Pass the vision test and the knowledge test — 25 multiple-choice questions, 20 correct to pass.'],
+  ['Pick a training track','Either a DMV-licensed commercial driving school, a secondary (high) school program, or home training with a Qualified Trainer. The track he picks changes how long he has to wait.'],
+  ['30 hours of classroom instruction','This total includes the mandatory 8-hour Safe Driving Practices course and the 2-hour parent/guardian training class.'],
+  ['A parent or guardian takes the 2-hour class','Required by law. If nobody does it, he is not eligible for a Connecticut license until he turns 18.'],
+  ['At least 40 hours behind the wheel','On-the-road training while holding the permit. This is the number the practice log in tab 8 is built around.'],
+  ['Hold the permit long enough','120 days if he trained through a commercial or secondary school. 180 days if he trained at home with a Qualified Trainer.'],
+  ['Road test','Then the restricted license period begins — and the passenger and curfew rules in the next card kick in.']
+];
+const CT_PHASES = [
+  ['While he holds the learner\'s permit',[
+    'No passengers at all except a parent, legal guardian, or qualified trainer. A parent or guardian may also ride along with the instructor.',
+    'A qualified trainer must be at least 20 years old, licensed for at least 4 years, with no license suspension in the last 4 years.',
+    'No curfew — but he must be accompanied by a qualified trainer at all times.',
+    'No cell phone at all, including hands-free, and no device with a video display.',
+    'Everyone in the car wears a permanently installed seat belt.'
+  ]],
+  ['Licensed — first 6 months',[
+    'Passengers limited to: a licensed driving instructor; parents or legal guardians (at least one holding a valid license); or a person at least 20 years old, licensed 4+ years, with no suspensions in the last 4 years.',
+    'No friends. Not one. This is the phase teens most often break and it is the phase that most often kills them.'
+  ]],
+  ['Licensed — second 6 months',[
+    'All of the above, plus immediate family — brothers and sisters.',
+    'Still no friends.'
+  ]],
+  ['After 12 months',[
+    'Passenger limit becomes the number of seat belts in the car.',
+    'The curfew and the phone ban still apply until his 18th birthday.'
+  ]],
+  ['Until his 18th birthday, regardless of phase',[
+    'No driving between 11 p.m. and 5 a.m., except for employment, school, religious activities, or medical necessity.',
+    'No cell phone or mobile electronic device, even hands-free.',
+    'Narrow exemptions to the passenger and curfew rules exist for active volunteer fire, volunteer ambulance and medical service members responding to or returning from a call, and for designated drivers in a Safe Ride program.'
+  ]]
+];
+const CT_LAWS = [
+  ['Slow Down, Move Over — and it is broader here',
+   'Connecticut\'s law covers <b>any</b> vehicle stopped on the shoulder with warning or hazard lights on, not just police, fire and ambulance. Reduce speed, and on a multi-lane road move over one lane when it is reasonable and safe. (CGS §14-283b)',false],
+  ['School buses: stop both directions',
+   'Red lights flashing and stop arm out means traffic in <b>both</b> directions stops. The only exception is if you are on the opposite side of a divided highway with a median or barrier separating the roadways. Many CT districts now run stop-arm cameras, so the ticket arrives in the mail. (CGS §14-279)',false],
+  ['Right on red is legal — after a complete stop',
+   'Permitted in Connecticut unless a sign says otherwise. Stop fully behind the line, yield to cross traffic and pedestrians, then go. Watch for posted NO TURN ON RED — New Haven in particular has a lot of them.',false],
+  ['Everyone buckles up',
+   'Connecticut law requires all occupants to be belted, front and rear. Separately, the teen driving rules require every passenger in his car to use a permanently installed seat belt.',false],
+  ['Zero tolerance under 21',
+   'The limit for a driver under 21 is a blood alcohol content of <b>0.02</b> — roughly one drink, and low enough that some cough medicines matter. Penalties include a long license suspension and an ignition interlock requirement. (CGS §14-227g)',true],
+  ['A first moving violation costs him the license for 48 hours',
+   'For a 16- or 17-year-old, a first conviction for a moving violation carries a mandatory 48-hour license suspension plus the fine. Subsequent convictions escalate sharply, and speeding, reckless driving, racing, phone use, or violating any teen restriction can suspend his license or his eligibility to get one.',true]
+];
+const CT_Q = [
+  {q:'He has had his license for four months. His best friend needs a ride to practice. Legal?',
+   c:['Yes — one passenger is allowed','No — in the first six months the only passengers allowed are an instructor, a parent or guardian, or a qualified adult 20+ licensed 4+ years','Yes, as long as it is daylight','Yes, if the friend is also 16'],a:1,
+   e:'Connecticut allows no peer passengers for the first six months, and only immediate family for the six months after that. This restriction exists because crash risk for a teen driver rises steeply with each teenage passenger in the car.'},
+  {q:'It is 11:30 p.m. and his shift at work just ended. He is 17 and licensed. Can he drive home?',
+   c:['No — the curfew is absolute until 18','Yes — employment is one of the listed exceptions to the 11 p.m.–5 a.m. curfew','Only if a parent is in the car','Only if he calls the DMV first'],a:1,
+   e:'The curfew runs 11 p.m. to 5 a.m. until his 18th birthday, with exceptions for employment, school, religious activities and medical necessity. Sensible practice: carry proof of the work schedule.'},
+  {q:'He is stopped at a red light and answers a hands-free call through the car\'s Bluetooth. He is 17.',
+   c:['Fine — hands-free is always legal','Fine — the car is stopped','Illegal — under 18, ALL cell phone use while driving is prohibited, hands-free included','Legal only on a permit, not a license'],a:2,
+   e:'Connecticut bans every form of mobile device use for drivers under 18, including hands-free, and including any handheld computer or device with a video display. Adults may use hands-free; he may not.'},
+  {q:'His mother is unavailable and never takes the two-hour parent training class. What happens?',
+   c:['Nothing — it is only recommended','Another relative can sign a waiver','He is not eligible for a Connecticut driver\'s license until he turns 18','It only delays the license by 30 days'],a:2,
+   e:'This is the single most common administrative trap in Connecticut teen licensing. One parent or legal guardian must complete the class before the teen can be licensed at 16 or 17.'},
+  {q:'He trains at home with a Qualified Trainer rather than at a driving school. How long must he hold the permit before the road test?',
+   c:['120 days','180 days','90 days','No waiting period if he completes 40 hours'],a:1,
+   e:'Home training with a Qualified Trainer requires 180 days. Commercial or secondary school training shortens it to 120 days. Either way, the 30 classroom hours and at least 40 behind-the-wheel hours still apply.'},
+  {q:'A car is stopped on the shoulder of I-91 with its hazard lights on. Not a police car — just a driver with a flat tire.',
+   c:['The Move Over law only covers emergency vehicles; carry on as normal','Slow down, and move over one lane if it is reasonable and safe — Connecticut\'s law covers any vehicle stopped with warning lights','Stop and offer assistance','Sound the horn while passing'],a:1,
+   e:'Connecticut expanded its Move Over law beyond emergency responders, which surprises a lot of drivers who learned the old rule. Treat every stopped vehicle with lights on the same way.'},
+  {q:'A school bus ahead stops with red lights flashing. He is on a four-lane road with a grass median, travelling the opposite direction.',
+   c:['Stop — both directions always stop, no exceptions','He may proceed with caution: the exception applies when a median or barrier divides the roadways','Slow to 15 mph and continue','Stop only if children are visible'],a:1,
+   e:'The divided-highway exception is real, but it turns on there being an actual median or barrier — not just a painted line or a center turn lane. On any undivided road, both directions stop. When in doubt, stop.'},
+  {q:'What is the blood alcohol limit for a Connecticut driver under 21?',
+   c:['0.08, the same as an adult','0.05','0.02 — effectively zero tolerance','0.00 exactly'],a:2,
+   e:'0.02 is low enough that a single drink can exceed it. Penalties include a lengthy license suspension and an ignition interlock requirement. For a driver under 18 the additional teen-license consequences stack on top.'},
+  {q:'He is 16, licensed, and gets his first speeding ticket. What is the automatic consequence?',
+   c:['A fine only, with points on the record','A mandatory 48-hour license suspension plus the fine','Nothing until a third offense','Immediate revocation until age 18'],a:1,
+   e:'Connecticut imposes a mandatory 48-hour suspension for a 16- or 17-year-old\'s first moving-violation conviction, and the penalties escalate steeply from there. Serious speeding can mean a suspension measured in months.'},
+  {q:'He is on his learner\'s permit. Who is allowed in the car?',
+   c:['Anyone, as long as a licensed adult is present','Only a parent, legal guardian, or qualified trainer — a parent may also ride along with the instructor','Up to three passengers','Any licensed driver over 18'],a:1,
+   e:'The permit phase is the most restrictive of all. A qualified trainer must be 20 or older, licensed at least four years, with no suspension in the past four years — check this before assuming an older cousin or sibling qualifies.'}
+];
+
+function drawCT(){
+  document.getElementById('ctPath').innerHTML = CT_PATH.map((s,i)=>
+    `<div class="step"><div class="num">${i+1}</div>
+     <div><div class="st">${s[0]}</div><div class="sd">${s[1]}</div></div></div>`).join('');
+  document.getElementById('ctRestrict').innerHTML = CT_PHASES.map(p=>
+    `<div class="phase"><div class="ph">${p[0]}</div>
+     <ul>${p[1].map(x=>'<li>'+x+'</li>').join('')}</ul></div>`).join('');
+  document.getElementById('ctLaws').innerHTML = CT_LAWS.map(l=>
+    `<div class="lawcard${l[2]?' hot':''}"><b>${l[0]}</b><span>${l[1]}</span></div>`).join('');
+}
+
+/* ============================ 2. FAQ ============================ */
+const FAQ = [
+ ['Permit &amp; paperwork',[
+  ['What does he need to bring to get the learner\'s permit?',
+   '<p>Proof of identity and legal presence, his Social Security number, proof of Connecticut residency, and parent or legal guardian consent. DMV publishes an exact document checklist and it is unforgiving — one missing item means a wasted appointment.</p>',
+   'Pull the current checklist from the DMV site the week before, lay every document on the kitchen table, and photograph the pile. Book the appointment online; walk-in service is limited and unavailable at several offices.'],
+  ['How hard is the knowledge test?',
+   '<p>25 multiple-choice questions; he needs 20 correct to pass. It draws directly from the Connecticut Driver\'s Manual, including the sign shapes and right-of-way rules in tabs 5 and 6 of this app.</p>',
+   'If he fails, he waits 7 days and pays a fee to rebook. Cheaper fix: have him take free online CT practice tests until he is scoring in the 90s consistently, not just passing.'],
+  ['His permit is about to expire and he has not taken the road test.',
+   '<p>An expired permit generally means reapplying, and the waiting-period clock can start over — which is a far more expensive mistake than it sounds.</p>',
+   'Put the permit expiry date and the earliest eligible road-test date in a shared calendar the day he gets the permit. Book the road test as soon as he is eligible; you can always reschedule, and appointment slots go quickly.']
+ ]],
+ ['Training requirements',[
+  ['Do we have to use a driving school, or can I teach him myself?',
+   '<p>Either works, but the choice changes the waiting period. Commercial or secondary school training means he can test after holding the permit <b>120 days</b>. Home training with a Qualified Trainer means <b>180 days</b>.</p><p>Both routes still require 30 hours of classroom instruction and at least 40 hours behind the wheel.</p>',
+   'Even families who teach at home usually send the teen to a licensed school for the required 8-hour Safe Driving Practices course, because the school files the certificate DMV needs. Decide early — two extra months of waiting is the real cost.'],
+  ['Who actually counts as a Qualified Trainer?',
+   '<p>A parent or legal guardian, a licensed driving instructor, or any person who is <b>at least 20 years old, has held a license for at least 4 years, and has had no license suspension in the past 4 years</b>.</p>',
+   'Check the suspension history before assuming an older sibling or cousin qualifies. A trainer who does not meet the bar makes every hour they supervise legally worthless — and puts the teen in violation.'],
+  ['What is a CS-1 and do we need one?',
+   '<p>The CS-1 is the driver education certificate confirming completion of the 8-hour safe driving practices course. A Connecticut-licensed driving school issues it and files it electronically with DMV. A 16- or 17-year-old needs it on file for the road test.</p>',
+   'Ask the school to confirm the CS-1 was actually transmitted, and keep your copy. Showing up to a road test without it on file ends the appointment before it starts.'],
+  ['No parent can make the two-hour parent training class.',
+   '<p>Connecticut requires one parent or legal guardian to complete it. Without it, he cannot be licensed until his 18th birthday, regardless of how well he drives.</p>',
+   'Call several DMV-licensed schools rather than one — sessions run frequently, often on evenings and weekends, and availability varies a lot between schools. A legal guardian counts, so it does not have to be the same parent every time.']
+ ]],
+ ['Road test day',[
+  ['What do we bring to the road test?',
+   '<p>His learner\'s permit, the vehicle\'s <b>valid registration certificate</b>, and <b>proof of insurance in the same name as the registration</b> (leased vehicles may be in the lessee\'s name). For a 16- or 17-year-old, the driver training certificate must be on file.</p>',
+   'Check the insurance card in the glovebox is the current one — an expired card in the right folder is one of the most common reasons a test gets cancelled at the counter.'],
+  ['Can he take the test in our family car?',
+   '<p>Yes, if it is properly registered and insured. You <b>cannot</b> use a rental or daily-rental vehicle. A company car requires a letter from the company. Properly insured long-term leases are fine.</p>',
+   'If your own car is questionable, most driving schools will rent you theirs for the test — it is already compliant and he has probably practiced in it.'],
+  ['Do they inspect the car before the test?',
+   '<p>Yes. Every light must work — headlights, brake lights including the high-mounted third one, and turn signals — and so must the horn. If the examiner finds the vehicle unsafe, the test is not conducted and you reschedule. Aftermarket window tint requires a CT tint compliance sticker.</p>',
+   'Two nights before, have him walk the car while you press the brake and run each signal. It takes four minutes and it is the single most preventable cause of a wasted appointment.'],
+  ['Who drives to the DMV for the test?',
+   '<p>He is still a permit holder until he passes, so he cannot drive there alone — a licensed driver has to accompany him.</p>',
+   'Let him drive there anyway, with you beside him. Arriving warmed up beats arriving cold out of the passenger seat.'],
+  ['He failed. What now?',
+   '<p>He must wait <b>14 days</b> before retesting and pay a retest fee.</p>',
+   'Get the examiner\'s score sheet and treat it as a lesson plan — failures cluster around a small number of specific errors, usually observation at intersections, speed control, or one maneuver. Drill exactly those for two weeks rather than driving generally.'],
+  ['Where can he take the road test?',
+   '<p>Road testing is offered at DMV hub offices, by appointment only, at select locations.</p>',
+   'Reschedule at least 3 days ahead if plans change, or you forfeit the prepaid test fee. Also worth doing: practice on the roads immediately surrounding the testing office.']
+ ]],
+ ['Living with the restrictions',[
+  ['Prom ends after 11 p.m. Is he stuck?',
+   '<p>The curfew has an exception for school activities, which DMV reads as covering school-sponsored or school-sanctioned events, on or off school grounds. Travel to and from prom is covered — but the trip has to be direct.</p><p>Driving from prom to a friend\'s house party and then home is <b>not</b> covered. Driving from prom to a school-sponsored post-prom event and then straight home is.</p>',
+   'DMV suggests students carry an official schedule of the school-sponsored prom activities, and that the school notify local police of the itinerary. Ask the school for both — it turns a roadside argument into a piece of paper.'],
+  ['Can he drive his younger sister to school?',
+   '<p>Not in the first six months after licensing. Immediate family — brothers and sisters — become permitted passengers only in the <b>second</b> six months.</p>',
+   'Mark the two dates on the family calendar the day he is licensed: month 7 (siblings) and month 13 (one passenger per seat belt). Most violations are honest miscounting.'],
+  ['Can he at least use his phone for navigation?',
+   '<p>No. Under 18, Connecticut prohibits cell phones and mobile electronic devices entirely while driving — hands-free included, and that extends to handheld computers and devices with a video display.</p>',
+   'Set the destination before the car moves and put the phone out of reach, or let an adult passenger handle navigation. Practically: turn on Do Not Disturb While Driving so the temptation never appears.'],
+  ['He volunteers with the fire department. Does that change anything?',
+   '<p>Yes, narrowly. The passenger and curfew restrictions do not apply to active members of a volunteer fire company, volunteer ambulance service, or medical service organization who are responding to or returning from an emergency or carrying out their duties — nor to a designated driver in a Safe Ride program.</p>',
+   'The exemption covers the call, not the evening around it. Have him keep his department ID on him whenever he drives.'],
+  ['He works nights. Does he need to prove it if he is stopped at 11:20?',
+   '<p>Employment is a listed exception to the 11 p.m.–5 a.m. curfew, but an officer at the roadside has no way to know that.</p>',
+   'Keep a current printed work schedule or a recent pay stub in the glovebox. It costs nothing and resolves the stop in thirty seconds.'],
+  ['Can he drive out of state?',
+   '<p>His Connecticut credential travels with him, but the rules of the state he is driving in apply, and some states treat young or permit drivers differently.</p>',
+   'Check the destination state\'s DMV page before a road trip — particularly New York and New Jersey, which have their own restrictions that catch Connecticut teens out.']
+ ]],
+ ['Money &amp; insurance',[
+  ['When do I have to tell my insurance company?',
+   '<p>Notify the carrier when the permit is issued, and add him once he is licensed. An undisclosed licensed driver in the household is a common reason for a denied claim or a cancelled policy.</p><p>The permit phase usually costs little or nothing extra, because he is legally required to have a licensed adult beside him. The increase arrives at licensure.</p>',
+   'Make the call the day the permit is printed. Ask the agent to note the date, and ask them what the premium will look like at licensure so the number is not a surprise.'],
+  ['How much is this going to cost?',
+   '<p>Adding a teen to an existing family policy is substantially cheaper than a standalone policy for him — commonly reported averages put a shared family policy at roughly half the cost of insuring a 16-year-old separately, though Connecticut figures vary widely by town, vehicle, and carrier.</p>',
+   'Get three quotes rather than accepting a renewal, and specifically ask about good-student discounts, driver-training discounts, and telematics programs. Which car he is assigned to also moves the number a lot. These are general figures, not advice for your situation — your agent can price your actual case.']
+ ]],
+ ['When something goes wrong',[
+  ['He got a ticket.',
+   '<p>A first moving-violation conviction for a 16- or 17-year-old carries a mandatory <b>48-hour license suspension</b> plus the fine. Later convictions escalate steeply, and serious speeding, reckless driving, racing, phone use, or violating a teen restriction can suspend his license or his eligibility to hold one.</p>',
+   'Do not ignore the summons — a missed response compounds the problem. If the charge carries a longer suspension, it is reasonable to talk to a Connecticut traffic attorney about options; that is a legal question and I am not a lawyer.'],
+  ['He was in a minor collision.',
+   '<p>Stop immediately. Check whether anyone is hurt and call 911 if there are injuries or the road is blocked. Exchange names, license, registration and insurance information. Photograph everything — both vehicles, the position, the whole scene, the other car\'s plate.</p>',
+   'Do not discuss fault at the scene, even conversationally. Notify your insurer promptly; they will tell you what reporting is required. If police do not respond, get a case or report number where you can.'],
+  ['He is scared to drive after a near miss.',
+   '<p>Very common, and it usually passes faster with structure than with time off. Confidence comes back through repetition in conditions that feel easy.</p>',
+   'Drop back two rungs on the 20-session ladder in tab 9 — empty lot, then quiet residential — and rebuild from there. Short sessions, twenty minutes, ending while it is still going well. Ending on a success is the entire technique.'],
+  ['He keeps making the same mistake and I am losing patience.',
+   '<p>Teaching a relative to drive is genuinely hard, and frustration in the passenger seat makes a nervous driver worse, not better.</p>',
+   'Pick one skill per session and ignore everything else, however tempting. Narrate what you want <em>before</em> it is needed ("in about two blocks we\'ll turn right") rather than correcting after. If it keeps going badly, a few paid lessons from an instructor with dual controls resets the dynamic — and it is not an admission of anything.']
+ ]]
+];
+
+function drawFAQ(filter){
+  const q = (filter||'').trim().toLowerCase();
+  let idx = 0, out = '', hits = 0;
+  FAQ.forEach(([cat,items])=>{
+    const rows = items.map(it=>{
+      const i = idx++;
+      const hay = (it[0]+' '+it[1]+' '+it[2]).toLowerCase();
+      if(q && !hay.includes(q)) return '';
+      hits++;
+      const open = P.faq.includes(i)?' open':'';
+      return `<details class="faq"${open} data-i="${i}"><summary>${it[0]}</summary>
+        <div class="faqbody">${it[1]}
+        <div class="fix"><b>How it gets resolved:</b> ${it[2]}</div></div></details>`;
+    }).filter(Boolean).join('');
+    if(rows) out += `<div class="faqcat">${cat}</div>${rows}`;
+  });
+  document.getElementById('faqList').innerHTML =
+    hits ? out : `<div class="card nores">Nothing matches “${(filter||'').replace(/</g,'&lt;')}”.<br>
+      Try <b>prom</b>, <b>insurance</b>, <b>road test</b>, <b>phone</b>, <b>CS-1</b>, or <b>ticket</b>.</div>`;
+  document.querySelectorAll('details.faq').forEach(d=>{
+    d.addEventListener('toggle',()=>{
+      const i = +d.dataset.i, k = P.faq.indexOf(i);
+      if(d.open && k<0) P.faq.push(i);
+      if(!d.open && k>-1) P.faq.splice(k,1);
+      save();
+    });
+  });
+}
+const FAQ_COUNT = FAQ.reduce((a,[,items])=>a+items.length,0);
+
+/* ============================ 3. COCKPIT ============================ */
+const CONTROLS = [
+  {n:1,x:232,y:250,t:'Steering wheel',
+   b:['Hands at <b>9 and 3</b> — not 10 and 2 anymore. The airbag deploys upward and outward at roughly 200 mph; arms crossed over the hub get thrown into the face.',
+      'Thumbs rest <b>on</b> the rim, not hooked through the spokes. A hard jolt through the front wheels can break a hooked thumb.',
+      'Steer <b>push-pull</b>: the hands trade the wheel back and forth and never cross the 12 o\'clock point.'],
+   why:'Grip is the one habit that gets built in the first hour and is nearly impossible to fix later. Get it right on day one.'},
+  {n:2,x:150,y:242,t:'Turn signal stalk',
+   b:['Left hand, left of the wheel. <b>Down = left, up = right</b> — it follows the direction you rotate the wheel.',
+      'Signal <b>at least 100 feet</b> before a turn in town, and 3–4 seconds before a lane change.',
+      'A signal is a <b>statement of intent, not a request</b>. Signaling does not create right-of-way and does not oblige anyone to let you in.'],
+   why:'The single cheapest crash-prevention device in the car, and the most commonly skipped.'},
+  {n:3,x:314,y:242,t:'Wiper stalk',
+   b:['Right of the wheel. Rotate for speed, pull toward you for <b>washer fluid</b>.',
+      'Many cars put an intermittent/auto setting between off and low. Find it now, in the driveway, not in a downpour.',
+      'In most states, <b>wipers on means headlights on</b> — a good habit regardless of the local rule.'],
+   why:'Fumbling for wipers in the first rainstorm is a classic way for a new driver to drift out of a lane.'},
+  {n:4,x:104,y:300,t:'Headlights',
+   b:['Off · parking · low beam · auto. Learn where the detent for each one lives by feel.',
+      '<b>High beams</b>: push the stalk forward (or pull for a flash). Drop to low beams when you\'re within a few hundred feet of oncoming traffic or approaching a car from behind.',
+      '<b>Daytime running lights are not headlights.</b> DRLs usually leave your taillights dark, so at dusk you look invisible from behind while your dashboard looks fully lit.'],
+   why:'The DRL trap causes real rear-end collisions at dusk. If the dash lights up automatically, he may never notice the back of the car is dark.'},
+  {n:5,x:232,y:150,t:'Gauge cluster',
+   b:['Speedometer, tachometer, fuel, coolant temperature.',
+      '<b>Red light = stop driving safely and soon</b> (oil pressure, temperature, brakes, charging).',
+      '<b>Amber/yellow = get it looked at</b>, keep driving normally (check engine, tire pressure).',
+      'Glance, don\'t stare. Eyes off the road for more than about two seconds is where trouble starts.'],
+   why:'Knowing red-versus-amber turns a mystery light from a panic into a decision.'},
+  {n:6,x:420,y:196,t:'Hazard lights',
+   b:['The red triangle button, always within reach of both front seats.',
+      'Use when you are <b>stopped or disabled</b> and creating an obstacle, or slowing hard for an unexpected jam on a highway (a couple of flashes as a warning to the car behind).',
+      'Do <b>not</b> drive around with them on in rain or fog — it hides your turn signals and brake lights, and several states prohibit it.'],
+   why:'Misused hazards actively make you harder to predict, which is worse than not using them.'},
+  {n:7,x:430,y:288,t:'Gear selector',
+   b:['<b>P R N D</b> — Park, Reverse, Neutral, Drive.',
+      'Foot firmly on the brake before shifting out of Park, and keep it there until you intend to move.',
+      'Never select R or P while the car is rolling.',
+      'Coming to a stop: brake to a full stop <em>first</em>, then shift. The transmission is not a brake.'],
+   why:'Shifting while rolling is expensive at best and a control loss at worst.'},
+  {n:8,x:500,y:330,t:'Parking brake',
+   b:['A pedal, a hand lever, or an electronic switch depending on the car.',
+      'Set it <b>every time</b> you park, not just on hills. It takes the whole weight of the car off a single small parking pawl inside the transmission.',
+      'On a hill: set the parking brake <em>before</em> shifting into Park, so the brake holds the car rather than the transmission.',
+      'It is also the backup if the hydraulic brakes ever fail — pull it gradually, never yank it.'],
+   why:'"Parking brake first, then Park" is a two-second habit that saves a transmission.'},
+  {n:9,x:196,y:400,t:'Brake pedal',
+   b:['The wide one on the left. <b>Right foot only</b>, always — left-foot braking in an automatic leads to riding the brake and confusing the driver behind.',
+      'Squeeze progressively; don\'t stab. A smooth stop is brake pressure that <em>eases off</em> in the last few feet so the car settles instead of nose-diving.',
+      'Cover the brake (foot hovering, not pressing) any time you see a hazard developing.'],
+   why:'Passengers judge a driver by the last three feet of every stop. So do the police, honestly.'},
+  {n:10,x:268,y:400,t:'Accelerator',
+   b:['The narrow one on the right. <b>Pivot the heel on the floor</b> between the two pedals instead of lifting the whole foot.',
+      'That pivot is what lets you move to the brake in a fraction of a second without looking down or missing.',
+      'Smooth in, smooth out. Sudden throttle in a turn unloads the front tires.'],
+   why:'Pedal misapplication — hitting the gas when you meant the brake — is a leading cause of low-speed crashes for both new and elderly drivers. The heel pivot is the fix.'},
+  {n:11,x:232,y:64,t:'Rearview mirror',
+   b:['Adjust <b>after</b> the seat is set, never before.',
+      'Frame the entire rear window with as little of your own headliner and back seat as possible.',
+      'Flip the night tab (or use auto-dim) when headlights behind you are blinding.'],
+   why:'Setting mirrors before the seat means resetting them all over again.'},
+  {n:12,x:60,y:130,t:'Side mirrors',
+   b:['Set them <b>wide</b>: lean your head against the driver\'s window and set the left mirror so your own car\'s flank barely appears. Lean to the center of the car and do the same for the right.',
+      'Done right, a car passing you leaves the rearview and enters the side mirror before it leaves the side mirror and enters your peripheral vision — no gap.',
+      '<b>Blind spots still exist.</b> Shoulder-check every single lane change anyway, forever.'],
+   why:'Most drivers aim mirrors at their own doors, which is a picture of the car they already own.'},
+  {n:13,x:560,y:210,t:'Seat &amp; headrest',
+   b:['Heel on the floor, brake pressed <em>fully</em> to the floor, knee still slightly bent.',
+      'Drape a wrist over the top of the wheel — the shoulder should stay on the seat back.',
+      'Chest <b>at least 10 inches</b> from the airbag hub.',
+      'Headrest center level with the top of the ears, close to the head. It is a <em>restraint</em>, not a pillow — that is what prevents whiplash.'],
+   why:'Nearly every new driver sits too close and too upright. Too close is genuinely dangerous in a deployment.'},
+  {n:14,x:600,y:290,t:'Seatbelt',
+   b:['Lap belt low and snug across the <b>hips and pelvis</b>, never across the soft stomach.',
+      'Shoulder belt flat across the middle of the collarbone and chest — never tucked behind the arm or under the shoulder.',
+      'Belt first, then start the engine. It becomes automatic within a week.'],
+   why:'The lap belt riding up onto the abdomen is what causes serious internal injury in an otherwise survivable crash.'}
+];
+
+function drawCockpit(){
+  const hs = CONTROLS.map(c=>{
+    const seen = P.seen.includes(c.n)?' seen':'';
+    return `<g class="hs${seen}" data-n="${c.n}">
+      <circle cx="${c.x}" cy="${c.y}" r="30" fill="transparent"/>
+      <circle class="bub" cx="${c.x}" cy="${c.y}" r="18"/>
+      <text x="${c.x}" y="${c.y+6}" text-anchor="middle">${c.n}</text></g>`;
+  }).join('');
+  document.getElementById('diagram').innerHTML = `
+  <svg viewBox="0 0 660 440" xmlns="http://www.w3.org/2000/svg" aria-label="Driver cockpit diagram">
+    <rect width="660" height="440" fill="#fefafd" rx="8"/>
+    <!-- windshield -->
+    <path d="M30 20 H630 V96 H30 Z" fill="#f8f1fb" stroke="#e6d6ec"/>
+    <text x="330" y="42" text-anchor="middle" fill="#a98cb4" font-size="12" font-family="sans-serif">WINDSHIELD</text>
+    <!-- rearview -->
+    <rect x="200" y="52" width="64" height="20" rx="5" fill="#ead9f0" stroke="#d0b8da"/>
+    <!-- mirrors -->
+    <path d="M34 116 l34 -8 v30 l-34 -8 z" fill="#ead9f0" stroke="#d0b8da"/>
+    <path d="M626 116 l-34 -8 v30 l34 -8 z" fill="#ead9f0" stroke="#d0b8da"/>
+    <!-- dashboard -->
+    <path d="M20 100 Q330 132 640 100 L640 350 Q330 330 20 350 Z" fill="#f7f0fa" stroke="#e8daee"/>
+    <!-- cluster -->
+    <rect x="168" y="122" width="128" height="58" rx="9" fill="#f0e4f5" stroke="#dcc7e4"/>
+    <circle cx="200" cy="151" r="17" fill="#fff" stroke="#dcc7e4"/><circle cx="264" cy="151" r="17" fill="#fff" stroke="#dcc7e4"/>
+    <!-- wheel -->
+    <circle cx="232" cy="250" r="60" fill="none" stroke="#5b4463" stroke-width="13"/>
+    <circle cx="232" cy="250" r="19" fill="#5b4463"/>
+    <path d="M172 250 H213 M251 250 H292 M232 269 V308" stroke="#5b4463" stroke-width="9"/>
+    <!-- stalks -->
+    <rect x="140" y="238" width="46" height="8" rx="4" fill="#8b6f96" transform="rotate(-8 163 242)"/>
+    <rect x="278" y="238" width="46" height="8" rx="4" fill="#8b6f96" transform="rotate(8 301 242)"/>
+    <!-- headlight knob -->
+    <circle cx="104" cy="300" r="17" fill="#f0e4f5" stroke="#dcc7e4"/>
+    <!-- center stack -->
+    <rect x="376" y="150" width="96" height="150" rx="10" fill="#f0e4f5" stroke="#dcc7e4"/>
+    <rect x="388" y="160" width="72" height="30" rx="5" fill="#fff" stroke="#dcc7e4"/>
+    <path d="M420 189 l11 18 h-22 z" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- gear selector -->
+    <rect x="414" y="264" width="34" height="60" rx="16" fill="#e4d4ea" stroke="#cbb2d4"/>
+    <circle cx="431" cy="280" r="10" fill="#5b4463"/>
+    <!-- parking brake -->
+    <rect x="486" y="316" width="30" height="14" rx="6" fill="#e4d4ea" stroke="#cbb2d4"/>
+    <!-- seat / belt hints -->
+    <rect x="536" y="176" width="52" height="80" rx="12" fill="#f2e8f6" stroke="#e4d4ea"/>
+    <rect x="546" y="146" width="32" height="26" rx="8" fill="#f2e8f6" stroke="#e4d4ea"/>
+    <path d="M580 264 L616 320" stroke="#b598c0" stroke-width="7" stroke-linecap="round"/>
+    <!-- pedals -->
+    <rect x="20" y="356" width="620" height="76" rx="8" fill="#f9f3fb" stroke="#efe2f2"/>
+    <rect x="176" y="376" width="42" height="52" rx="5" fill="#9d81a7"/>
+    <rect x="256" y="382" width="24" height="46" rx="5" fill="#9d81a7"/>
+    <text x="197" y="370" text-anchor="middle" fill="#9d81a7" font-size="10" font-family="sans-serif">BRAKE</text>
+    <text x="268" y="376" text-anchor="middle" fill="#9d81a7" font-size="10" font-family="sans-serif">GAS</text>
+    ${hs}
+  </svg>`;
+  document.querySelectorAll('.hs').forEach(g=>{
+    g.onclick=()=>showControl(parseInt(g.dataset.n,10));
+  });
+}
+function showControl(n, mark=true){
+  const c = CONTROLS.find(x=>x.n===n);
+  if(mark && !P.seen.includes(n)){ P.seen.push(n); save(); }
+  document.querySelectorAll('.hs').forEach(g=>{
+    g.classList.toggle('active', parseInt(g.dataset.n,10)===n);
+    if(P.seen.includes(parseInt(g.dataset.n,10))) g.classList.add('seen');
+  });
+  document.getElementById('ctrlInfo').innerHTML =
+    `<span class="pill">Control ${n} of 14</span>
+     <h3 style="margin-top:10px">${c.t}</h3>
+     <ul>${c.b.map(x=>'<li>'+x+'</li>').join('')}</ul>
+     <div class="why"><b>Why it matters:</b> ${c.why}</div>`;
+}
+
+/* ============================ 2. PRE-DRIVE ============================ */
+const CHECKS = {
+  chkOut:[
+    ['Walk the circle','One lap around the car before getting in. Kids, pets, bikes, toys, a flat tire, a low branch — all invisible from the driver\'s seat.'],
+    ['Glance at the tires','You are not measuring pressure, just looking for one that is obviously flatter than the other three.'],
+    ['Check the windows and lights','Ice, fog, or grime on any glass, and no lens badly cracked or dark.'],
+    ['Approach from the front in traffic','If parked on a street, walk around the front of the car, facing traffic, not blind behind it.']
+  ],
+  chkIn:[
+    ['Doors closed and locked','Locked doors are much less likely to come open in a collision.'],
+    ['Seat distance','Press the brake all the way to the floor. Knee still slightly bent. If the leg locks straight, come forward.'],
+    ['Seat back angle','Wrist over the top of the wheel with the shoulder still touching the seat. Chest at least 10 inches from the airbag.'],
+    ['Headrest','Center of the restraint level with the top of the ears, as close to the head as comfortable.'],
+    ['Seatbelt','Lap belt low across the hips. Shoulder belt flat across the collarbone, never behind the arm.'],
+    ['Rearview mirror','Frame the whole back window. Seat first, mirror second — never the reverse.'],
+    ['Side mirrors, set wide','Lean to the window for the left, to the center for the right; your own car should barely appear.'],
+    ['Everything else within reach','Phone mounted or away, climate set, music set, drink secured. Nothing you will need to reach for while moving.']
+  ],
+  chkGo:[
+    ['Foot on the brake, then start','Keep it there. In a car with a keyless start this is required anyway.'],
+    ['Scan the dash','All the warning lights come on, then all of them go out. Anything that stays lit gets dealt with before moving.'],
+    ['Fuel and range','Decide now, not at a quarter tank on a highway.'],
+    ['Parking brake off','And confirm the light on the dash actually went out.'],
+    ['Shift with the brake pressed','Into D or R deliberately, looking at the selector once to confirm.'],
+    ['Mirrors, then over the shoulder','Especially when pulling out of a parking space or a curb — a mirror will not show you a cyclist.'],
+    ['Signal, then ease off the brake','Let the car creep before adding any throttle. The first foot of every trip should be slow.']
+  ]
+};
+function drawChecks(){
+  Object.entries(CHECKS).forEach(([id,items])=>{
+    document.getElementById(id).innerHTML = items.map((it,i)=>{
+      const key = id+i, on = P.chk.includes(key)?' on':'';
+      return `<div class="chk${on}" data-k="${key}">
+        <div class="box">✓</div>
+        <div><div class="ttl">${it[0]}</div><div class="why">${it[1]}</div></div></div>`;
+    }).join('');
+  });
+  document.querySelectorAll('.chk').forEach(el=>{
+    el.onclick=()=>{
+      const k=el.dataset.k, i=P.chk.indexOf(k);
+      if(i>-1) P.chk.splice(i,1); else P.chk.push(k);
+      el.classList.toggle('on'); save();
+    };
+  });
+}
+
+/* ============================ SIGN GRAPHICS ============================ */
+function sign(kind){
+  const S = {
+    stop:`<polygon points="50,8 100,8 142,50 142,100 100,142 50,142 8,100 8,50" fill="#c1272d" stroke="#fff" stroke-width="6"/>
+          <text x="75" y="90" text-anchor="middle" fill="#fff" font-size="36" font-weight="700" font-family="sans-serif">STOP</text>`,
+    yield:`<polygon points="8,18 142,18 75,140" fill="#fff" stroke="#c1272d" stroke-width="13"/>
+           <text x="75" y="76" text-anchor="middle" fill="#c1272d" font-size="24" font-weight="700" font-family="sans-serif">YIELD</text>`,
+    warn:`<polygon points="75,8 142,75 75,142 8,75" fill="#f6c026" stroke="#333" stroke-width="4"/>
+          <path d="M75 42 L75 92 M60 78 L75 96 L90 78" stroke="#111" stroke-width="7" fill="none" stroke-linecap="round"/>`,
+    warnCurve:`<polygon points="75,8 142,75 75,142 8,75" fill="#f6c026" stroke="#333" stroke-width="4"/>
+          <path d="M62 116 C62 86 96 86 96 60 L96 46" stroke="#111" stroke-width="8" fill="none"/>
+          <path d="M84 52 L96 36 L108 52" fill="#111"/>`,
+    pentagon:`<polygon points="75,6 140,54 116,136 34,136 10,54" fill="#c9e265" stroke="#333" stroke-width="4"/>
+          <circle cx="62" cy="52" r="8" fill="#111"/><circle cx="92" cy="46" r="7" fill="#111"/>
+          <path d="M62 62 l-8 34 M62 62 l14 4 l12 30 M92 54 l4 26" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/>`,
+    rr:`<circle cx="75" cy="75" r="68" fill="#f6c026" stroke="#333" stroke-width="4"/>
+        <path d="M20 75 H130 M75 20 V130" stroke="#111" stroke-width="9"/>
+        <text x="45" y="60" text-anchor="middle" fill="#111" font-size="30" font-weight="700" font-family="serif">R</text>
+        <text x="105" y="100" text-anchor="middle" fill="#111" font-size="30" font-weight="700" font-family="serif">R</text>`,
+    pennant:`<polygon points="10,20 140,58 10,96" fill="#f6c026" stroke="#333" stroke-width="4"/>
+        <text x="52" y="66" text-anchor="middle" fill="#111" font-size="15" font-weight="700" font-family="sans-serif">NO</text>
+        <text x="58" y="82" text-anchor="middle" fill="#111" font-size="12" font-weight="700" font-family="sans-serif">PASSING</text>`,
+    speed:`<rect x="26" y="6" width="98" height="138" rx="6" fill="#fff" stroke="#111" stroke-width="5"/>
+        <text x="75" y="42" text-anchor="middle" font-size="19" font-weight="700" font-family="sans-serif">SPEED</text>
+        <text x="75" y="64" text-anchor="middle" font-size="19" font-weight="700" font-family="sans-serif">LIMIT</text>
+        <text x="75" y="120" text-anchor="middle" font-size="48" font-weight="700" font-family="sans-serif">45</text>`,
+    crossbuck:`<g transform="rotate(45 75 75)"><rect x="60" y="8" width="30" height="134" fill="#fff" stroke="#111" stroke-width="3"/>
+        <rect x="8" y="60" width="134" height="30" fill="#fff" stroke="#111" stroke-width="3"/></g>
+        <text x="75" y="70" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif">RAIL</text>
+        <text x="75" y="88" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif">ROAD</text>`,
+    work:`<polygon points="75,8 142,75 75,142 8,75" fill="#f47b20" stroke="#333" stroke-width="4"/>
+        <circle cx="75" cy="52" r="11" fill="#111"/><path d="M75 64 l0 30 M56 76 l38 0 M75 94 l-14 24 M75 94 l14 24" stroke="#111" stroke-width="6" stroke-linecap="round" fill="none"/>`,
+    guide:`<rect x="6" y="34" width="138" height="82" rx="6" fill="#1a7f4b" stroke="#fff" stroke-width="4"/>
+        <text x="75" y="70" text-anchor="middle" fill="#fff" font-size="17" font-weight="700" font-family="sans-serif">EXIT 42</text>
+        <text x="75" y="96" text-anchor="middle" fill="#fff" font-size="15" font-family="sans-serif">2 MILES</text>`,
+    service:`<rect x="18" y="18" width="114" height="114" rx="6" fill="#0057a8" stroke="#fff" stroke-width="4"/>
+        <text x="75" y="92" text-anchor="middle" fill="#fff" font-size="52" font-weight="700" font-family="sans-serif">H</text>`
+  };
+  return `<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">${S[kind]||''}</svg>`;
+}
+
+/* ============================ 3. SIGN QUIZ ============================ */
+const SIGN_REF = [
+  ['Octagon','Stop — and nothing else. It is the only octagonal sign on the road, so you can identify it from behind, in the dark, covered in snow.'],
+  ['Upside-down triangle','Yield. Slow down, be prepared to stop, and give way.'],
+  ['Diamond','General warning. Something about the road ahead changes — a curve, a dip, a merge, a deer crossing.'],
+  ['Pentagon','School zone or school crossing.'],
+  ['Circle','Railroad crossing ahead.'],
+  ['Crossbuck (X)','You are at the tracks right now. It functions as a yield sign.'],
+  ['Horizontal pennant','No-passing zone. It sits on the <em>left</em> side of the road, which is unusual and deliberate.'],
+  ['Vertical rectangle','A regulatory sign — a law. Speed limit, one way, no turn on red.'],
+  ['Horizontal rectangle','Guide/information. Route markers, exits, distances.'],
+  ['Red','Stop or prohibition.'],
+  ['Yellow','General caution.'],
+  ['Fluorescent yellow-green','People — pedestrians, bicycles, school zones.'],
+  ['Orange','Road work. Expect people and equipment near live lanes.'],
+  ['Green','Permitted movement or guidance.'],
+  ['Blue','Motorist services — hospital, food, fuel, rest.'],
+  ['Brown','Parks, recreation, historical sites.']
+];
+document.getElementById('signRef').innerHTML =
+  '<h3>The code, in one card</h3><div class="grid2">'+
+  ['<div>'+SIGN_REF.slice(0,8).map(r=>`<div style="margin-bottom:7px"><b>${r[0]}</b> — <span class="muted">${r[1]}</span></div>`).join('')+'</div>',
+   '<div>'+SIGN_REF.slice(8).map(r=>`<div style="margin-bottom:7px"><b>${r[0]}</b> — <span class="muted">${r[1]}</span></div>`).join('')+'</div>'].join('')+
+  '</div>';
+
+const SIGN_Q = [
+  {img:'stop',q:'Half of this sign is buried in snow and you cannot read the word. What is it, and how do you know?',
+   c:['A stop sign — the octagon shape is reserved for stop signs only','A yield sign — red always means yield','Impossible to tell without reading it','A do-not-enter sign'],a:0,
+   e:'The octagon is used for exactly one sign in the entire US system, specifically so it is identifiable when unreadable — from behind, in fog, or under snow.'},
+  {img:'yield',q:'You are approaching this sign at 40 mph on a merge ramp. What are you obligated to do?',
+   c:['Come to a complete stop, then merge','Slow down, give way to traffic on the main road, and stop if necessary','Maintain speed — the merging car has the right of way','Speed up to match traffic and merge in front'],a:1,
+   e:'Yield means give way, not necessarily stop. You stop only if you cannot merge safely. Stopping dead at the end of a ramp when the road is clear is its own hazard.'},
+  {img:'warn',q:'A yellow diamond tells you what, exactly?',
+   c:['A law you must obey or be ticketed','Something about the road ahead is about to change — be ready','The road ahead is closed','A recommended scenic route'],a:1,
+   e:'Diamonds are advisory warnings, not laws. But the advisory speed posted under one is calculated for a car in good condition on dry pavement — it is not padded.'},
+  {img:'pentagon',q:'The five-sided sign means:',
+   c:['A hospital nearby','School zone or school crossing','A pedestrian bridge','A playground with no through traffic'],a:1,
+   e:'And the fluorescent yellow-green color is the newer standard for anything involving people on foot or on bikes — it is the most eye-catching color in daylight.'},
+  {img:'rr',q:'This round yellow sign means:',
+   c:['A roundabout ahead','A railroad crossing is ahead — expect tracks','A traffic circle with a yield','Road curves in a full loop'],a:1,
+   e:'Round is used almost exclusively for railroad advance warning. Never stop on the tracks, and never start across unless you can see clear room on the far side.'},
+  {img:'crossbuck',q:'You are stopped at a crossbuck with no lights or gates and cannot see far down the track. What do you do?',
+   c:['Proceed — no gate means no train','Treat it as a yield: slow, look and listen both ways, cross only when clearly safe','Sound your horn and proceed','Wait for another car to go first'],a:1,
+   e:'A crossbuck legally functions as a yield sign. A freight train can need well over a mile to stop, so the burden is entirely on you.'},
+  {img:'pennant',q:'You spot this on the LEFT side of the road. What is it telling you?',
+   c:['You are entering a no-passing zone','Traffic merges from the left','The left lane ends','Passing is permitted for the next mile'],a:0,
+   e:'The pennant is the one common sign deliberately placed on the left, right where a driver about to pull out to pass will be looking.'},
+  {img:'work',q:'Orange signs and cones. The single most important rule here:',
+   c:['Fines are doubled, so just watch your speed','Slow down and expect people, equipment, and lane shifts with no warning','Use hazard lights through the whole zone','Follow the car ahead closely to keep the queue moving'],a:1,
+   e:'Doubled fines are real in most states but beside the point. Work zones put people on foot a few feet from live traffic, and lane lines can be repainted, conflicting, or absent.'},
+  {img:'speed',q:'A posted 45 mph limit in heavy fog means:',
+   c:['You may drive 45 — it is the posted limit','45 is the maximum in ideal conditions; conditions require slower','You may drive 45 plus a small buffer','The limit only applies in daylight'],a:1,
+   e:'Nearly every state also has a "basic speed law": you may never drive faster than is reasonable for the conditions, even when under the posted number. Fog, rain, ice, and traffic all lower the real limit.'},
+  {img:'service',q:'A blue sign means:',
+   c:['A law or regulation','Motorist services — hospital, fuel, food, lodging, rest area','Road work ahead','A recreation area'],a:1,
+   e:'Blue is services, brown is parks and historic sites, green is guidance and distance. None of them are ever telling you to do something.'},
+  {img:'warnCurve',q:'A curve warning with an advisory speed of 30 posted beneath it. You are at 55.',
+   c:['Brake in the curve to settle the car','Slow to about the advisory BEFORE the curve, then hold steady or gently accelerate through it','Coast through in neutral','Advisory speeds are suggestions with a wide margin — 45 is fine'],a:1,
+   e:'All braking happens before turning in. Braking mid-corner shifts weight forward and off the rear tires, which is exactly how a car spins.'},
+  {img:'guide',q:'Green signs are:',
+   c:['Instructions you are legally required to follow','Guidance and permitted movements — where things are, how far','Warnings of hazards','Reserved for highways only'],a:1,
+   e:'Green tells you where you are and where things are. It never restricts you, so it should never make you brake suddenly.'}
+];
+
+/* ============================ 4. INTERSECTION GRAPHICS ============================ */
+function scene(cars, control){
+  const R=100, C=150; // road half width, center
+  const pos = {N:[C,42],S:[C,258],E:[258,C],W:[42,C]};
+  const rot = {N:180,S:0,E:270,W:90}; // heading of travel (car nose direction)
+  let ctl='';
+  if(control==='4way'){
+    ctl = [['N',C,86],['S',C,214],['E',214,C],['W',86,C]].map(([d,x,y])=>
+      `<polygon points="${x-9},${y-4} ${x-4},${y-9} ${x+4},${y-9} ${x+9},${y-4} ${x+9},${y+4} ${x+4},${y+9} ${x-4},${y+9} ${x-9},${y+4}" fill="#c1272d"/>`).join('');
+  } else if(control==='signal'){
+    ctl = `<rect x="138" y="18" width="24" height="52" rx="5" fill="#333"/>
+           <circle cx="150" cy="30" r="7" fill="#4a2020"/><circle cx="150" cy="44" r="7" fill="#4a3d20"/><circle cx="150" cy="58" r="7" fill="#2fbf5e"/>`;
+  } else if(control==='roundabout'){
+    ctl = `<circle cx="150" cy="150" r="42" fill="#f0e3f3" stroke="#c9a9d2" stroke-width="3"/>
+           <path d="M192 150 A42 42 0 0 0 150 108" fill="none" stroke="#a06bb0" stroke-width="3" marker-end="url(#ar)"/>`;
+  } else if(control==='T'){
+    ctl = '';
+  }
+  const carSvg = cars.map(c=>{
+    if(c.ped){
+      return `<g transform="translate(${c.px},${c.py})">
+        <circle cx="0" cy="-9" r="5" fill="#1a7f4b"/>
+        <path d="M0 -4 V7 M-6 0 H6 M0 7 l-5 9 M0 7 l5 9" stroke="#1a7f4b" stroke-width="3"
+          fill="none" stroke-linecap="round"/>
+        <text x="0" y="30" text-anchor="middle" fill="#1a7f4b" font-size="9" font-weight="700"
+          font-family="sans-serif">${c.label}</text></g>`;
+    }
+    const [bx,by]=pos[c.from]; const x=bx+(c.dx||0), y=by+(c.dy||0); const r=rot[c.from];
+    const you = c.label==='YOU';
+    const fill = you?'#7e22ce':(c.color||'#b8860b');
+    let arrow='';
+    if(c.turn==='left')  arrow=`<path d="M0 -22 L0 -34 M-10 -30 L0 -40 L10 -30" stroke="${fill}" stroke-width="3" fill="none" transform="rotate(-90)"/>`;
+    if(c.turn==='right') arrow=`<path d="M0 -22 L0 -34 M-10 -30 L0 -40 L10 -30" stroke="${fill}" stroke-width="3" fill="none" transform="rotate(90)"/>`;
+    if(c.turn==='straight'||!c.turn) arrow=`<path d="M0 -22 L0 -36 M-7 -30 L0 -38 L7 -30" stroke="${fill}" stroke-width="3" fill="none"/>`;
+    return `<g transform="translate(${x},${y}) rotate(${r})">
+      <rect x="-11" y="-19" width="22" height="38" rx="5" fill="${fill}"/>
+      <rect x="-8" y="-13" width="16" height="11" rx="3" fill="rgba(255,255,255,.5)"/>
+      ${arrow}
+      <text x="0" y="6" text-anchor="middle" fill="#fff" font-size="9" font-weight="700"
+        font-family="sans-serif" transform="rotate(${-r})">${c.label}</text></g>`;
+  }).join('');
+  const roads = control==='T'
+    ? `<rect x="0" y="110" width="300" height="80" fill="#ded2e4"/><rect x="110" y="150" width="80" height="150" fill="#ded2e4"/>
+       <path d="M0 150 H300" stroke="#fff" stroke-width="2" stroke-dasharray="10 8"/>`
+    : `<rect x="0" y="110" width="300" height="80" fill="#ded2e4"/><rect x="110" y="0" width="80" height="300" fill="#ded2e4"/>
+       <path d="M0 150 H110 M190 150 H300 M150 0 V110 M150 190 V300" stroke="#fff" stroke-width="2" stroke-dasharray="10 8"/>`;
+  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="ar" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 z" fill="#a06bb0"/></marker></defs>
+    <rect width="300" height="300" fill="#f5eef7"/>${roads}${ctl}${carSvg}</svg>`;
+}
+
+const ROW_Q = [
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'N',label:'RED',turn:'straight',color:'#b32d2d'}],ctl:'4way',
+   q:'Four-way stop. You stopped completely three seconds before the red car did. Who goes?',
+   c:['You — first to stop is first to go','The red car — it is opposite you','Both simultaneously, since you are not crossing paths','Whoever is larger'],a:0,
+   e:'First to arrive and stop, first to go. Note the second half of that: arriving is not enough, you must actually come to a full stop to claim it.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'E',label:'GRN',turn:'straight',color:'#c026d3'}],ctl:'4way',
+   q:'Four-way stop. You and the green car stopped at the same instant. The green car is on your right. Who goes?',
+   c:['You','The green car','Whoever signals first','Alternate — you, then them'],a:1,
+   e:'Tie goes to the right. Memorize it as "the right has the right." When in genuine doubt, waving the other driver through costs three seconds and settles it.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'N',label:'AMB',turn:'left'}],ctl:'4way',
+   q:'Four-way stop, you and the amber car stopped at the same time facing each other. You are going straight; the amber car is turning left across your path.',
+   c:['The amber car — turning traffic goes first to clear the intersection','You — a left turn yields to oncoming traffic','Whoever is closer to the intersection','Neither; both wait for a third car'],a:1,
+   e:'Straight beats turning. A left turn yields to oncoming traffic, at a stop sign, at a green light, everywhere.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'E',label:'BLU',turn:'straight',color:'#5a4fbf'}],ctl:'none',
+   q:'A residential crossing with NO signs or signals in any direction. You and the blue car arrive together; the blue car is on your right.',
+   c:['You have the right of way — you were going slightly faster','Yield to the car on your right','Nobody has the right of way; both must stop','The wider road always wins'],a:1,
+   e:'Uncontrolled intersections default to the same rule: yield to the right. These are common in older neighborhoods and cause a lot of low-speed collisions.'},
+  {cars:[{from:'S',label:'YOU',turn:'left'},{from:'N',label:'RED',turn:'straight',color:'#b32d2d'}],ctl:'signal',
+   q:'Solid green light — not a green arrow. You are turning left; the red car is coming straight at you.',
+   c:['Green means go — complete your turn','Yield to the oncoming car and to any pedestrians, then turn when there is a safe gap','Oncoming traffic must yield because you arrived first','Reverse out and try again'],a:1,
+   e:'A solid green is permission to enter the intersection, not permission to turn across someone. Keep your wheels straight while waiting, so a rear-end hit does not push you into oncoming traffic.'},
+  {cars:[{from:'S',label:'YOU',turn:'left'},{from:'W',label:'GRY',turn:'straight',color:'#5b4463'}],ctl:'T',
+   q:'A T-intersection. Your road dead-ends into the through road. No stop sign is visible.',
+   c:['The through road yields to you, since you have nowhere else to go','You yield — traffic on the through road has the right of way','First to arrive goes','Both stop and creep forward together'],a:1,
+   e:'The terminating road always yields to the continuing road, sign or no sign.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight',dy:20},{from:'W',label:'AMB',turn:'straight'}],ctl:'roundabout',
+   q:'Approaching a single-lane roundabout. A car is already circulating, approaching from your left.',
+   c:['Enter — traffic in the circle yields to entering traffic','Stop completely before entering, always','Yield to traffic already in the circle, coming from your left; enter when there is a gap','Enter and then merge with your signal on'],a:2,
+   e:'Yield on entry, do not stop unless you must, keep moving once inside, and signal right as you exit. Never stop inside the circle.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'N',label:'BUS',turn:'straight',color:'#e8a317'}],ctl:'none',
+   q:'A school bus ahead on a two-lane undivided road stops and puts on flashing RED lights with the stop arm out. You are on the opposite side.',
+   c:['Slow to 20 mph and pass carefully','Stop, and stay stopped until the lights stop flashing and the arm folds in','Only traffic behind the bus must stop','Pass on the left with your horn'],a:1,
+   e:'In Connecticut, traffic in BOTH directions must stop on an undivided road. The only exception is being on the opposite side of a divided highway with a median or barrier between the roadways — a painted line or a center turn lane does not count. Many CT districts run stop-arm cameras. When in doubt, stop.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight',dy:-92},{from:'S',label:'AMB',turn:'straight',dy:22,color:'#b32d2d'}],ctl:'none',
+   q:'An ambulance comes up behind you with lights and siren while you are in the middle of an intersection on a green.',
+   c:['Stop immediately where you are','Clear the intersection first, then pull to the right and stop','Speed up and stay ahead of it','Move left and stop'],a:1,
+   e:'Never stop inside the intersection — you box everyone in. Clear it, then pull right and stop. Also: do not follow an emergency vehicle closely to get through traffic; that is illegal nearly everywhere.'},
+  {cars:[{from:'S',label:'YOU',turn:'right'},{ped:true,px:205,py:126,label:'PED'}],ctl:'signal',
+   q:'You are turning right on a green. A pedestrian steps off the curb into the crosswalk you are about to cross — there are no painted lines.',
+   c:['No painted lines means no crosswalk; proceed','Yield — an unmarked crosswalk exists at essentially every intersection','Sound the horn to establish right of way','Proceed slowly without stopping'],a:1,
+   e:'A legal crosswalk exists at almost every intersection whether or not anyone painted it. Right turns are where pedestrians most often get hit, because the driver is looking left for a gap while turning right into someone.'},
+  {cars:[{from:'S',label:'YOU',turn:'straight'},{from:'W',label:'GRY',turn:'straight',color:'#5b4463'}],ctl:'signal',
+   q:'The signal ahead is a FLASHING RED in your direction. What does it mean?',
+   c:['Treat it exactly like a stop sign — full stop, then proceed when clear','Treat it as a yield','The light is broken; proceed with caution at speed','Stop and wait for it to turn green'],a:0,
+   e:'Flashing red equals stop sign. Flashing yellow equals slow down and proceed with caution. If a signal is completely dark, treat the whole intersection as an all-way stop.'},
+  {cars:[{from:'S',label:'YOU',turn:'right'},{from:'W',label:'BLU',turn:'straight',color:'#5a4fbf'}],ctl:'signal',
+   q:'Red light, you want to turn right, and there is no sign prohibiting it.',
+   c:['Slow, look, and roll through if it appears clear','Come to a complete stop behind the line, yield to all cross traffic and pedestrians, then turn when clear','Right on red is illegal in all states','Turn immediately — the red does not apply to right turns'],a:1,
+   e:'Right on red is permitted in Connecticut after a complete stop, unless a sign says otherwise — and the "complete stop" part is not optional. Watch for posted NO TURN ON RED; New Haven has a lot of them.'}
+];
+
+/* ============================ 6. HAZARDS ============================ */
+const HAZ_Q = [
+  {q:'The back of the car steps out in a turn on a wet road — you are starting to spin. What do you do?',
+   c:['Brake hard and hold the wheel straight','Ease off the accelerator and steer where you WANT to go, not where the car is sliding','Accelerate hard to pull the car straight','Yank the wheel opposite the slide as fast as possible'],a:1,
+   e:'Look and steer at your escape path. Your hands follow your eyes automatically, which is why staring at the ditch puts you in the ditch. Ease off the gas; do not stab the brakes, and do not overcorrect — a violent countersteer causes a second, worse slide in the other direction.'},
+  {q:'You hit standing water at speed and the steering suddenly goes light and vague. You are hydroplaning.',
+   c:['Brake firmly to slow down','Ease off the accelerator, keep the wheel steady and pointed straight, and wait for the tires to bite','Steer sharply to find grip','Downshift aggressively'],a:1,
+   e:'You are floating on a film of water and have almost no control, so give no inputs. Any braking or steering will land the instant traction returns and snap the car sideways. Just wait it out, then slow down.'},
+  {q:'A front tire blows out at 65 mph on the highway.',
+   c:['Brake hard immediately and pull over','Grip the wheel firmly, keep straight, ease OFF the gas, and let the car coast down before gently pulling off','Accelerate through it','Turn on the hazards and stop in the lane'],a:1,
+   e:'Braking during a blowout puts a huge, uneven load on the failed corner and can spin the car. Hold the wheel hard with both hands, let engine drag slow you, and only brake gently once you are down to a low speed.'},
+  {q:'The brake pedal goes to the floor and does nothing.',
+   c:['Pump the pedal, downshift to low gear, and apply the parking brake gradually while steering to a clear area','Turn the engine off immediately','Shift into reverse','Pull the parking brake to its full travel at once'],a:0,
+   e:'Pumping can rebuild pressure if a hydraulic circuit is partly alive. Low gear scrubs speed. Apply the parking brake gradually — yanking it locks the rear wheels and spins you. Never switch the engine off at speed: you lose power steering and can lock the wheel.'},
+  {q:'Your right wheels drop off the pavement onto a soft shoulder.',
+   c:['Steer back onto the road immediately and firmly','Ease off the gas, hold the wheel straight, let the car slow, then steer back on gently at low speed','Brake hard while still on the shoulder','Accelerate to climb back up the lip'],a:1,
+   e:'The classic fatal error is a hard yank back onto the pavement. The tire catches the lip, the car darts across the centerline into oncoming traffic. Slow first, then rejoin gently.'},
+  {q:'A deer steps into your lane fifty feet ahead at night.',
+   c:['Swerve hard around it','Brake hard and stay in your lane','Swerve into the oncoming lane if it looks empty','Accelerate to pass in front of it'],a:1,
+   e:'Brake, do not swerve. Swerving at speed is how a survivable animal strike becomes a head-on collision or a rollover. Also, deer travel in groups — if one crossed, expect a second.'},
+  {q:'The accelerator sticks wide open.',
+   c:['Switch off the ignition right away','Shift to NEUTRAL, brake to a stop, then shut the engine off once stopped','Pull the parking brake at speed','Steer into a curb to stop the car'],a:1,
+   e:'Neutral disconnects the engine from the wheels and solves it instantly. Keep the engine running so you keep power steering and power brakes; shut it down only after you have stopped.'},
+  {q:'You brake hard and the pedal shudders and pushes back against your foot.',
+   c:['Release the brake — something is failing','That is ABS working normally: keep firm pressure on and steer around the hazard','Pump the pedal rapidly','Shift to neutral'],a:1,
+   e:'Anti-lock brakes pulse dozens of times a second so the wheels keep rolling and keep steering. The shudder alarms people into lifting off, which defeats the whole system. Press and hold, and steer.'},
+  {q:'You are driving into low sun and are badly dazzled.',
+   c:['Speed up to get through it','Use the visor, sunglasses, a clean windshield, more following distance, and slow down','Follow the car ahead closely to use it as a shield','Use high beams to balance the glare'],a:1,
+   e:'A dirty windshield is the multiplier — smears scatter low sun into an opaque white sheet. Clean glass and a slower speed do most of the work. The driver coming the other way is dazzled too.'},
+  {q:'Dense fog. What lights, and what speed?',
+   c:['High beams, normal speed','Low beams (or fog lights), well below the limit, and use the right edge line as a guide','Hazard lights on while driving','Parking lights only'],a:1,
+   e:'High beams bounce off the water droplets and blind you with your own light. If it becomes truly impossible, exit the road completely — parking on the shoulder in fog invites a rear-end collision.'},
+  {q:'A car behind you is tailgating aggressively.',
+   c:['Brake-check to make a point','Increase your OWN following distance and let them pass when it is safe','Speed up to satisfy them','Turn on hazards to warn them off'],a:1,
+   e:'Counter-intuitive but correct: you cannot control the gap behind, so enlarge the gap in front. That gives you room for a gradual stop instead of a hard one, which is the only thing that protects you from the car behind.'},
+  {q:'You realize you are in the wrong lane and your exit is right there.',
+   c:['Cross the gore stripes quickly before you miss it','Brake and cut across','Miss the exit and take the next one','Reverse on the shoulder'],a:2,
+   e:'Missing an exit costs a few minutes. Last-second exit dives are a genuinely common cause of highway crashes. The correct answer here will be the correct answer for the rest of his driving life.'}
+];
+
+/* ============================ QUIZ ENGINE ============================ */
+function makeQuiz(cfg){
+  let i = 0, score = 0, answered = false;
+  const host = document.getElementById(cfg.host);
+  const bar = document.getElementById(cfg.bar);
+  const scoreEl = document.getElementById(cfg.score);
+  function render(){
+    const item = cfg.data[i];
+    answered = false;
+    bar.textContent = `Question ${i+1} of ${cfg.data.length}`;
+    scoreEl.textContent = `Score ${score}/${cfg.data.length}`;
+    const visual = cfg.visual ? cfg.visual(item) : '';
+    // shuffle choice order so the correct answer never sits in a predictable slot
+    const order = item.c.map((_,k)=>k);
+    for(let a=order.length-1;a>0;a--){ const b=Math.floor(Math.random()*(a+1)); [order[a],order[b]]=[order[b],order[a]]; }
+    host.innerHTML = `${visual}
+      <p class="q">${item.q}</p>
+      <div class="choices">${order.map((orig,slot)=>
+        `<button class="choice" data-k="${orig}"><span class="k">${'ABCD'[slot]}</span><span>${item.c[orig]}</span></button>`).join('')}</div>
+      <div class="fb" id="${cfg.host}-fb"></div>
+      <div style="margin-top:14px;display:flex;gap:8px">
+        <button class="act" id="${cfg.host}-next" style="display:none">Next question →</button>
+        <button class="act" id="${cfg.host}-restart" style="display:none">Start over</button>
+      </div>`;
+    host.querySelectorAll('.choice').forEach(b=>{
+      b.onclick=()=>{
+        if(answered) return; answered = true;
+        const k = +b.dataset.k, ok = k===item.a;
+        if(ok) score++;
+        host.querySelectorAll('.choice').forEach(x=>{
+          x.disabled = true;
+          if(+x.dataset.k===item.a) x.classList.add('correct');
+          else if(x===b) x.classList.add('wrong');
+        });
+        const fb = document.getElementById(cfg.host+'-fb');
+        fb.className = 'fb show '+(ok?'good':'bad');
+        fb.innerHTML = `<b>${ok?'Correct.':'Not quite.'}</b> ${item.e}`;
+        scoreEl.textContent = `Score ${score}/${cfg.data.length}`;
+        const nxt = document.getElementById(cfg.host+'-next');
+        if(i < cfg.data.length-1){ nxt.style.display='inline-block'; nxt.onclick=()=>{i++;render();}; }
+        else{
+          P[cfg.key] = Math.max(P[cfg.key]||0, score); save();
+          fb.innerHTML += `<div style="margin-top:9px"><b>Set complete — ${score} of ${cfg.data.length}.</b> ${
+            score===cfg.data.length?'Perfect. Run it again in a week to make sure it stuck.':'Worth another pass; the ones he missed are the ones that matter.'}</div>`;
+          const rs = document.getElementById(cfg.host+'-restart');
+          rs.style.display='inline-block'; rs.onclick=()=>{i=0;score=0;render();};
+        }
+      };
+    });
+  }
+  render();
+}
+
+/* ============================ 5. MANEUVERS ============================ */
+const MAN = [
+  {t:'Smooth starts and smooth stops', tag:'Session 1',
+   s:['Foot on the brake, shift to D, then <b>release the brake and let the car creep</b> before touching the gas at all. Most cars will idle forward on their own.',
+      'Add throttle gently and progressively. If a passenger\'s head moves, it was too much.',
+      'To stop: pick your stopping point early. Brake firmly in the middle of the stop, then <b>ease pressure off in the last three feet</b> so the nose comes up level instead of dipping.',
+      'Once stopped, hold the brake. Do not creep.'],
+   tip:'Practice this until fifteen consecutive stops are smooth. It sounds trivial and it is the foundation of everything — every panic-brake habit gets built here.'},
+  {t:'Steering and turns', tag:'Session 1–2',
+   s:['Hands at 9 and 3. <b>Push-pull</b>: the top hand pushes the wheel down as the bottom hand feeds it across, and the hands never cross the top of the wheel.',
+      'All braking happens <b>before</b> the turn. Enter at a speed you have already chosen.',
+      'Look <b>through</b> the turn to where you want to end up, not at the curb. The car goes where the eyes go.',
+      'Right turns: stay tight to the right, end up in the right lane. Left turns: end up in the lane nearest the centerline, not drifting wide into the far lane.',
+      'Gently unwind the wheel — do not let it spin back through the hands.'],
+   tip:'The most common new-driver turn error is looking at the curb they are afraid of hitting, and then hitting it.'},
+  {t:'Lane changes — SMOG', tag:'Session 11+',
+   s:['<b>S</b>ignal — at least 3–4 seconds before you move.',
+      '<b>M</b>irror — rearview, then the side mirror on the side you are moving to.',
+      '<b>O</b>ver the shoulder — a quick head turn to the blind spot. Quick. Not a stare.',
+      '<b>G</b>o — move smoothly across, one lane at a time, then cancel the signal.',
+      'Never move over while braking. Do your speed adjustment first, then change lanes.'],
+   tip:'If a shoulder check takes more than about half a second, the car has drifted while he was not looking. Practice the head turn while parked.'},
+  {t:'Following distance — the 3-second rule', tag:'Every session',
+   s:['Watch the car ahead pass a fixed object — a sign, a shadow line, an overpass.',
+      'Count "one thousand one, one thousand two, one thousand three." If you reach the object before you finish, you are too close.',
+      '<b>Add a second</b> for each complicating factor: rain, night, heavy load, towing, a truck you cannot see around, or a tailgater behind you.',
+      'On ice, distances go up by six to ten times. That is not an exaggeration.'],
+   tip:'Following distance is the only crash countermeasure that works before you have even noticed the hazard. It buys reaction time that no amount of skill can create.'},
+  {t:'Backing up straight', tag:'Session 3–4',
+   s:['Come to a <b>complete stop</b>, then shift to R.',
+      'Right hand over the back of the passenger seat, body turned, <b>looking out the rear window</b>. The backup camera is a supplement, never the primary view.',
+      'Left hand at the top of the wheel. In reverse the car pivots around the rear wheels, so small inputs move it a lot.',
+      'Idle speed only — no throttle. Cover the brake the whole time.',
+      'Sweep your eyes forward periodically; the <b>front of the car swings wide</b> in the opposite direction as you turn.'],
+   tip:'Reversing is where nearly all parking-lot damage happens, and it happens at 2 mph. Slow is the entire technique.'},
+  {t:'Parallel parking', tag:'Session 13–14',
+   s:['Find a space about 1.5 car lengths long. Signal.',
+      'Pull up <b>alongside</b> the front car, about 2–3 feet away, rear bumpers roughly even.',
+      'Stop. Shift to R. Check mirrors, blind spot, and behind you.',
+      'Back straight until your rear bumper is about level with the front car\'s rear bumper.',
+      'Turn the wheel <b>fully toward the curb</b> and back slowly until the car sits at roughly 45° to the curb.',
+      'Straighten the wheel and back until your front bumper clears the front car\'s rear bumper.',
+      'Turn the wheel <b>fully away from the curb</b> and continue back until parallel.',
+      'Shift to D, center up in the space, straighten the wheels. Aim to end 6–12 inches from the curb.'],
+   tip:'Reference points differ by car — find the specific ones for the car he will test in, using cones or chalk marks in an empty lot before ever trying it on a street.'},
+  {t:'Three-point turn (K-turn)', tag:'Session 13–14',
+   s:['Only on a road with good visibility in both directions, no hill crest, no curve, and no sign prohibiting it.',
+      'Signal right, pull fully to the right edge, stop.',
+      'Check both directions thoroughly. You need a big gap — this takes far longer than it feels like.',
+      'Signal left, turn the wheel fully left, pull forward slowly across the road to the far curb.',
+      'Stop. Shift to R. <b>Turn the wheel fully right</b>, look over your right shoulder, back up until you have room.',
+      'Stop. Shift to D, straighten out, and go.'],
+   tip:'Turning the wheel while completely stopped scrubs the tires and strains the power steering. Get the car creeping, then turn.'},
+  {t:'Parking on a hill — which way do the wheels go?', tag:'Session 13–14',
+   s:['<b>Downhill, with a curb:</b> wheels turned <b>toward</b> the curb (right). If the car rolls, the front tire catches the curb.',
+      '<b>Uphill, with a curb:</b> wheels turned <b>away</b> from the curb (left), then roll back a few inches so the tire rests against it.',
+      '<b>Either direction, no curb:</b> wheels turned <b>toward the shoulder</b> (right), so a runaway car leaves the road instead of entering traffic.',
+      'Always: parking brake on <b>before</b> shifting into Park.'],
+   tip:'Memorize it as "downhill toward, uphill away, no curb always right." This is on the written test in most states and, more usefully, it is on the real hill.'},
+  {t:'Merging onto a highway', tag:'Session 15–16',
+   s:['Use the whole on-ramp to <b>match the speed of traffic</b>. Entering 20 mph slow is more dangerous than entering fast.',
+      'Look early and far back down the highway, not just at the car beside you.',
+      'Signal, pick your gap, mirror, shoulder check, and move in decisively.',
+      '<b>Never stop on an on-ramp</b> unless traffic is genuinely stopped.',
+      'Exiting: signal, move into the deceleration lane, and <b>do your slowing there</b> — not on the highway.'],
+   tip:'Merging traffic yields to traffic already on the highway. Courteous drivers will make room, but they are not required to, and expecting it is how people get hit.'},
+  {t:'Night driving', tag:'Session 17–18',
+   s:['Headlights on from dusk. Confirm your <b>taillights</b> are actually on, not just the DRLs.',
+      'High beams on open road; drop to low beams within a few hundred feet of oncoming traffic, or when following a car.',
+      'If someone leaves their high beams on, <b>look at the right edge line</b> and use it to hold your lane rather than staring into the glare.',
+      'Reduce speed so your stopping distance fits inside the reach of your headlights — you cannot react to what you cannot see.',
+      'Clean the inside of the windshield. Interior film scatters oncoming headlights into a starburst.'],
+   tip:'Worth front-loading in Connecticut: once he is licensed he cannot drive between 11 p.m. and 5 a.m. until he turns 18, so the permit phase is when he can legally build night experience with an adult beside him.'},
+  {t:'Rain and wet roads', tag:'Session 19–20',
+   s:['The <b>first ten minutes</b> of rain are the most dangerous — water lifts oil off the pavement before it washes it away.',
+      'Wipers on means headlights on. Both for seeing and for being seen.',
+      'Double the following distance, minimum.',
+      'Avoid standing water and drive in the <b>tire tracks</b> of the vehicle ahead where the water is already displaced.',
+      'Every input — steering, braking, throttle — gets gentler and earlier.'],
+   tip:'Worn tires are the actual variable in wet grip. Check tread depth with a penny: if you can see all of Lincoln\'s head, the tire is done.'}
+];
+document.getElementById('manList').innerHTML = MAN.map(m=>`
+  <details class="man"><summary><span>${m.t}</span><span class="pill">${m.tag}</span></summary>
+    <div class="manbody"><ol class="steps">${m.s.map(x=>'<li>'+x+'</li>').join('')}</ol>
+    <div class="tip"><b>Coach\'s note:</b> ${m.tip}</div></div></details>`).join('');
+
+/* ============================ 7. LADDER + LOG ============================ */
+const LADDER = [
+  ['1–2','Empty parking lot, engine off first','Seat, mirrors, pedals, controls by feel. Then: creep, stop, creep, stop. Nothing else.'],
+  ['3–4','Empty lot','Wide turns, figure-eights, backing straight, parking between painted lines.'],
+  ['5–6','Quiet residential streets, daylight','Right turns only. Speed control, lane position, stopping at lines.'],
+  ['7–8','Residential','Left turns. Four-way stops. Yielding to pedestrians.'],
+  ['9–10','Moderate streets','Traffic signals, protected and unprotected lefts, judging gaps.'],
+  ['11–12','Multi-lane roads','Lane changes with SMOG. Maintaining following distance in real traffic.'],
+  ['13–14','Mixed','Parallel parking, three-point turn, hill parking, backing into a space.'],
+  ['15–16','Highway','On-ramps, merging at speed, exiting, sustained 55–70 mph.'],
+  ['17–18','After dark','Every previous skill, at night. Headlight discipline and glare handling.'],
+  ['19–20','Rain, heavy traffic, test route','Bad conditions plus a full rehearsal of the actual road-test route.']
+];
+document.getElementById('ladder').innerHTML = LADDER.map((r,i)=>{
+  const on = P.ladder.includes(i)?' on':'';
+  return `<div class="chk lad${on}" data-i="${i}"><div class="box">✓</div>
+    <div><div class="ttl">Sessions ${r[0]} — ${r[1]}</div><div class="why">${r[2]}</div></div></div>`;
+}).join('');
+document.querySelectorAll('.lad').forEach(el=>{
+  el.onclick=()=>{
+    const i=+el.dataset.i, k=P.ladder.indexOf(i);
+    if(k>-1) P.ladder.splice(k,1); else P.ladder.push(i);
+    el.classList.toggle('on'); save();
+  };
+});
+document.getElementById('logRows').innerHTML =
+  Array.from({length:22},(_,i)=>
+    `<tr><td class="n">${i+1}</td><td class="blank"></td><td></td><td></td><td></td></tr>`).join('');
+
+/* ============================ PROGRESS ============================ */
+function paintProgress(){
+  const totals = {
+    ct: CT_Q.length,
+    faq: FAQ_COUNT,
+    seen: CONTROLS.length,
+    chk: Object.values(CHECKS).reduce((a,b)=>a+b.length,0),
+    signs: SIGN_Q.length, row: ROW_Q.length, haz: HAZ_Q.length,
+    ladder: LADDER.length
+  };
+  const got = {
+    ct: P.ct||0,
+    faq: P.faq.length,
+    seen: P.seen.length, chk: P.chk.length, signs: P.signs||0,
+    row: P.row||0, haz: P.haz||0, ladder: P.ladder.length
+  };
+  const total = Object.values(totals).reduce((a,b)=>a+b,0);
+  const done = Object.keys(totals).reduce((a,k)=>a+Math.min(got[k],totals[k]),0);
+  const pct = total? Math.round(done/total*100):0;
+  const C = 2*Math.PI*23;
+  document.getElementById('ringArc').setAttribute('stroke-dashoffset', C*(1-pct/100));
+  document.getElementById('ringTxt').textContent = pct+'%';
+  const map = {ct:['ct'],faq:['faq'],cockpit:['seen'],predrive:['chk'],signs:['signs'],
+               row:['row'],haz:['haz'],log:['ladder']};
+  document.querySelectorAll('.tab').forEach(t=>{
+    const keys = map[t.dataset.id];
+    if(!keys) return;
+    t.classList.toggle('done', keys.every(k=>got[k]>=totals[k]));
+  });
+}
+
+/* ============================ BOOT ============================ */
+drawCT();
+makeQuiz({host:'ctQ',bar:'ctBar',score:'ctScore',data:CT_Q,key:'ct'});
+drawFAQ('');
+(()=>{ const s=document.getElementById('faqSearch'); let t;
+  s.addEventListener('input',()=>{ clearTimeout(t); t=setTimeout(()=>drawFAQ(s.value),120); }); })();
+drawCockpit();
+showControl(1,false);
+drawChecks();
+makeQuiz({host:'signQ',bar:'signBar',score:'signScore',data:SIGN_Q,key:'signs',
+  visual:it=>`<div class="signbox">${sign(it.img)}</div>`});
+makeQuiz({host:'rowQ',bar:'rowBar',score:'rowScore',data:ROW_Q,key:'row',
+  visual:it=>`<div class="scenebox">${scene(it.cars,it.ctl)}</div>`});
+makeQuiz({host:'hazQ',bar:'hazBar',score:'hazScore',data:HAZ_Q,key:'haz'});
+paintProgress();
+</script>
+</body>
+</html>
